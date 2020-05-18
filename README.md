@@ -1,6 +1,6 @@
 # Agenda de Contatos
 
-<img src="https://user-images.githubusercontent.com/29135156/82157383-8938d000-9857-11ea-928f-5e3b71d57c09.gif" width="100%" heigth="auto">
+<img src="https://user-images.githubusercontent.com/29135156/82263062-806bfb00-9938-11ea-8193-267fb6a275fd.gif" width="100%" heigth="auto">
 
 App desenvolvido em Flutter consumindo uma API de Gifs.
 Descrição do projeto.
