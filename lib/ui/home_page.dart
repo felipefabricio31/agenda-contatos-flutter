@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:agenda_contatos/helpers/contact_helper.dart';
 import 'package:flutter/material.dart';
 
+import 'contact_page.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -102,5 +104,10 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  void _showContactPage({Contact contact}) {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => ContactPage(contact: contact)));
   }
 }
