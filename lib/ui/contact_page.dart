@@ -71,8 +71,7 @@ class _ContactPageState extends State<ContactPage> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                        image: _editedContact.img != null &&
-                                _editedContact.img != ""
+                        image: _editedContact.img != null
                             ? FileImage(File(_editedContact.img))
                             : AssetImage("images/person.png"),
                         fit: BoxFit.cover),
@@ -132,7 +131,8 @@ class _ContactPageState extends State<ContactPage> {
           builder: (context) {
             return AlertDialog(
               title: Text("Descartar alterações?"),
-              content: Text("Se sair suas alterações serão perdidas."),
+              content: Text(
+                  "Tem certeza que deseja sair, suas alterações serão perdidas."),
               actions: <Widget>[
                 FlatButton(
                   child: Text("Cancelar"),
