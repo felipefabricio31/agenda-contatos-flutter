@@ -6,6 +6,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'contact_page.dart';
 
+enum OrderOptions { orderAz, orderZa }
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -30,6 +32,21 @@ class _HomePageState extends State<HomePage> {
         title: Text("Contatos"),
         backgroundColor: Colors.red,
         centerTitle: true,
+        actions: <Widget>[
+          PopupMenuButton<OrderOptions>(
+            itemBuilder: (context) => <PopupMenuEntry<OrderOptions>>[
+              const PopupMenuItem(
+                child: Text("Ordenar de A-Z"),
+                value: OrderOptions.orderAz,
+              ),
+              const PopupMenuItem(
+                child: Text("Ordenar de Z-A"),
+                value: OrderOptions.orderZa,
+              ),
+            ],
+            onSelected: _orderList,
+          )
+        ],
       ),
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
@@ -61,11 +78,13 @@ class _HomePageState extends State<HomePage> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                    image:
-                        contacts[index].img != null && contacts[index].img != ""
-                            ? FileImage(File(contacts[index].img))
-                            : AssetImage("images/person.png"),
-                  ),
+                      image: contacts[index].img != null &&
+                              contacts[index].img != ""
+                          ? FileImage(File(contacts[index].img))
+                          : AssetImage(
+                              "images/person.png",
+                            ),
+                      fit: BoxFit.cover),
                 ),
               ),
               Padding(
@@ -180,5 +199,21 @@ class _HomePageState extends State<HomePage> {
       contacts = list;
       print(contacts);
     });
+  }
+
+  void _orderList(OrderOptions result) {
+    switch (result) {
+      case OrderOptions.orderAz:
+        contacts.sort((a, b) {
+          return a.name.toLowerCase().compareTo(b.name.toLowerCase());
+        });
+        break;
+      case OrderOptions.orderZa:
+        contacts.sort((a, b) {
+          return b.name.toLowerCase().compareTo(a.name.toLowerCase());
+        });
+        break;
+    }
+    setState(() {});
   }
 }
